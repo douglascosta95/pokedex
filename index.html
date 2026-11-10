@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex - O seu guia Pokémon</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="topo">
+            <a href="index.html"><img src="assets/logo.png" alt="Logo Pokédex" title="Pokédex"></a>
+            <h1>Pokédex</h1>
+        </div>
+        <nav id="user-nav">
+            <button id="btn-show-all" class="nav-btn active">Todos</button>
+            <button id="btn-show-favs" class="nav-btn">Favoritos</button>
+            <div id="auth-buttons">
+                <button id="btn-open-login" class="nav-btn-auth">Login</button>
+            </div>
+            <div id="user-profile" style="display: none;">
+                <span id="user-email"></span>
+                <button id="btn-logout" class="nav-btn-auth">Sair</button>
+            </div>
+        </nav>
+    </header>
+
+   <section class="box-boas-vindas">
+    <div class="banner">
+        <img src="assets/banner.jpg" alt="Banner Pokémon">
+    </div>
+</section>
+
+    <main id="lista">
+        <div class="info">
+            <h2>Lista de Pokémon</h2>
+            
+            <div class="busca-container">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Pesquisar por nome ou número..." 
+                    autocomplete="off"
+                >
+            </div>
+        </div>
+
+        <section id="pokemon-list" class="lista-pokemons"></section>
+
+        <div class="controles">
+            <p id="loading-text" class="loading" style="display: none;">Carregando...</p>
+            <button id="load-more-btn" class="btn-carregar">Carregar Mais</button>
+        </div>
+    </main>
+
+    <!-- Modal de Autenticação (Login / Cadastro) -->
+    <div id="auth-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <button id="modal-close-btn" class="modal-close">&times;</button>
+            <h3 id="modal-title">Entrar na Conta</h3>
+            <form id="auth-form">
+                <div class="input-group">
+                    <label for="auth-email">E-mail</label>
+                    <input type="email" id="auth-email" required placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label for="auth-password">Senha</label>
+                    <input type="password" id="auth-password" required placeholder="Mínimo 6 caracteres" minlength="6">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="btn-submit">Entrar</button>
+            </form>
+            <p class="modal-switch">
+                Não tem conta? <a href="#" id="switch-auth-mode">Cadastre-se</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- 1. SDK oficial do Supabase para Navegador via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 2. Nossos scripts modularizados -->
+    <script src="js/supabase-client.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Modal de Detalhes do Pokémon -->
+    <div id="pokemon-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card-box">
+            <button id="modal-pokemon-close" class="modal-close">&times;</button>
+            <div id="modal-pokemon-content">
+                <!-- Conteúdo preenchido dinamicamente pelo JS -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
